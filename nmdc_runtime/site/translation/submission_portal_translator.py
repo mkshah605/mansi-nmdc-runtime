@@ -626,14 +626,12 @@ class SubmissionPortalTranslator(Translator):
             package_name = EnvironmentType[env].value
 
             sample_data_by_id = groupby(
-               BIOSAMPLE_UNIQUE_KEY_SLOT,
-               concat(sample_data.values()),
+                BIOSAMPLE_UNIQUE_KEY_SLOT,
+                concat(sample_data.values()),
             )
             for sample in sample_data[key]:
-                sample['env_package'] = package_name
-        nmdc_biosample_ids = self._id_minter(
-            "nmdc:Biosample", len(sample_data_by_id)
-        )
+                sample["env_package"] = package_name
+        nmdc_biosample_ids = self._id_minter("nmdc:Biosample", len(sample_data_by_id))
         sample_data_to_nmdc_biosample_ids = dict(
             zip(sample_data_by_id.keys(), nmdc_biosample_ids)
         )
